@@ -1,7 +1,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Penguins } from "@/components/Icons";
 import { Select } from "@/components/ui/select";
 import VideoBackground from "@/components/VideoBackground";
 import AudioPlayer from "@/components/AudioPlayer";
@@ -23,7 +22,6 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 w-full p-4 z-10 flex items-center">
         <div className="flex items-center">
-          <Penguins className="w-10 h-10 text-white mr-3" />
           <h1 className="text-white text-2xl font-bold">Travel Mate</h1>
         </div>
         <div className="ml-auto">
@@ -49,7 +47,6 @@ const Index = () => {
         {/* Categories */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
           <div className="category-card">
-            <div className="text-travel-light-blue text-5xl mb-4">✈️</div>
             <h3 className="text-xl font-bold mb-2">Cheapest Flights</h3>
             <p className="text-white/80">
               Find the most affordable flights from your local airport.
@@ -57,7 +54,6 @@ const Index = () => {
           </div>
           
           <div className="category-card">
-            <div className="text-travel-light-blue text-5xl mb-4">🏨</div>
             <h3 className="text-xl font-bold mb-2">Best Accommodations</h3>
             <p className="text-white/80">
               Quality hotels and apartments at great prices.
@@ -65,7 +61,6 @@ const Index = () => {
           </div>
           
           <div className="category-card">
-            <div className="text-travel-light-blue text-5xl mb-4">🧳</div>
             <h3 className="text-xl font-bold mb-2">Complete Packages</h3>
             <p className="text-white/80">
               All-inclusive travel deals with everything you need.
