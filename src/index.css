@@ -52,7 +52,7 @@
   }
 
   body {
-    @apply bg-black text-foreground overflow-hidden;
+    @apply bg-black text-foreground overflow-x-hidden;
   }
 }
 
