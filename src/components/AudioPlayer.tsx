@@ -3,13 +3,24 @@ import React, { useState, useRef, useEffect } from 'react';
 import { PlayIcon, PauseIcon } from './Icons';
 
 const AudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Create audio element
     audioRef.current = new Audio('https://play.nicecream.fm/radio/8020/blue.mp3');
     audioRef.current.loop = true;
+    
+    // Autoplay
+    const playPromise = audioRef.current.play();
+    
+    // Handle autoplay restrictions
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        // Auto-play was prevented
+        setIsPlaying(false);
+      });
+    }
     
     // Clean up on unmount
     return () => {
@@ -34,6 +45,7 @@ const AudioPlayer = () => {
       <button onClick={togglePlay}>
         {isPlaying ? <PauseIcon className="w-5 h-5" /> : <PlayIcon className="w-5 h-5" />}
       </button>
+      <span className="text-white text-xs opacity-70">nicecream.fm</span>
     </div>
   );
 };
