@@ -1,8 +1,9 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Select } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import VideoBackground from "@/components/VideoBackground";
 import AudioPlayer from "@/components/AudioPlayer";
 import SearchForm from "@/components/SearchForm";
@@ -21,7 +22,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center relative">
       <VideoBackground />
       <AudioPlayer />
 
@@ -31,12 +32,41 @@ const Index = () => {
           <h1 className="text-white text-2xl font-bold">Travel Mate</h1>
         </div>
         <div className="ml-auto">
-          <button 
-            onClick={() => navigate("/wishlist")}
-            className="text-white bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-colors"
-          >
-            My Wishlist
-          </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="text-white bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">
+                My Wishlist
+              </button>
+            </DialogTrigger>
+            <DialogContent className="glass-card border-0 max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-white text-xl">Sign up to view your wishlist</DialogTitle>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="space-y-4">
+                  <input 
+                    type="email" 
+                    placeholder="Your email" 
+                    className="glass-input w-full p-3" 
+                  />
+                  <button className="search-button w-full">
+                    Sign up with Email
+                  </button>
+                </div>
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t border-white/20"></span>
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-black/60 px-2 text-white/60">Or continue with</span>
+                  </div>
+                </div>
+                <button className="w-full p-3 rounded-lg bg-white text-black font-medium flex justify-center items-center space-x-2">
+                  Sign up with Google
+                </button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </header>
 
@@ -76,7 +106,7 @@ const Index = () => {
           </div>
         </main>
       ) : (
-        <main className="container px-4 py-20 z-10 flex-1 w-full">
+        <main className="container px-4 pt-20 pb-8 z-10 w-full flex-1 flex flex-col h-screen">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">
               Travel deals from {searchParams.origin || "Selected Origin"}
@@ -92,36 +122,53 @@ const Index = () => {
             </button>
           </div>
 
-          <Tabs defaultValue="cheapest-deals" className="w-full" onValueChange={setActiveTab}>
-            <TabsList className="grid grid-cols-3 mb-8 bg-black/20 backdrop-blur-sm">
-              <TabsTrigger value="cheapest-deals">Cheapest Deals</TabsTrigger>
-              <TabsTrigger value="cheapest-flights">Cheapest Flights</TabsTrigger>
-              <TabsTrigger value="cheapest-accommodation">Cheapest Accommodation</TabsTrigger>
+          <Tabs defaultValue="cheapest-deals" className="w-full flex-1 flex flex-col" onValueChange={setActiveTab}>
+            <TabsList className="grid grid-cols-3 mb-8 bg-white/80 backdrop-blur-sm text-black">
+              <TabsTrigger 
+                value="cheapest-deals" 
+                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
+              >
+                Cheapest Deals
+              </TabsTrigger>
+              <TabsTrigger 
+                value="cheapest-flights" 
+                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
+              >
+                Cheapest Flights
+              </TabsTrigger>
+              <TabsTrigger 
+                value="cheapest-accommodation" 
+                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
+              >
+                Cheapest Accommodation
+              </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="cheapest-deals" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {mockPackageDeals.map(deal => (
-                  <DealCard key={deal.id} deal={deal} type="package" />
-                ))}
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="cheapest-flights" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {mockFlightDeals.map(deal => (
-                  <DealCard key={deal.id} deal={deal} type="flight" />
-                ))}
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="cheapest-accommodation" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {mockAccommodationDeals.map(deal => (
-                  <DealCard key={deal.id} deal={deal} type="accommodation" />
-                ))}
-              </div>
-            </TabsContent>
+            <ScrollArea className="flex-1">
+              <TabsContent value="cheapest-deals" className="mt-0 h-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {mockPackageDeals.map(deal => (
+                    <DealCard key={deal.id} deal={deal} type="package" />
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="cheapest-flights" className="mt-0 h-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {mockFlightDeals.map(deal => (
+                    <DealCard key={deal.id} deal={deal} type="flight" />
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="cheapest-accommodation" className="mt-0 h-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {mockAccommodationDeals.map(deal => (
+                    <DealCard key={deal.id} deal={deal} type="accommodation" />
+                  ))}
+                </div>
+              </TabsContent>
+            </ScrollArea>
           </Tabs>
         </main>
       )}

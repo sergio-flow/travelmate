@@ -11,16 +11,19 @@ const AudioPlayer = () => {
     audioRef.current = new Audio('https://play.nicecream.fm/radio/8020/blue.mp3');
     audioRef.current.loop = true;
     
-    // Autoplay
-    const playPromise = audioRef.current.play();
-    
-    // Handle autoplay restrictions
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        // Auto-play was prevented
+    // Autoplay with better handling
+    const playAudio = async () => {
+      try {
+        if (audioRef.current) {
+          await audioRef.current.play();
+        }
+      } catch (error) {
+        console.log("Audio autoplay prevented:", error);
         setIsPlaying(false);
-      });
-    }
+      }
+    };
+    
+    playAudio();
     
     // Clean up on unmount
     return () => {
