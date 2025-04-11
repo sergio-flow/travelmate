@@ -15,12 +15,14 @@ interface SearchFormProps {
 const SearchForm = ({ onSearch }: SearchFormProps) => {
   const [origin, setOrigin] = useState("");
   const [participants, setParticipants] = useState("");
+  const [period, setPeriod] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch({
       origin,
       participants,
+      period,
     });
   };
 
@@ -50,6 +52,21 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
               <SelectItem value="me-and-friends">Me and friends</SelectItem>
               <SelectItem value="me-and-lover">Me and lover</SelectItem>
               <SelectItem value="3+">3+</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="flex-1">
+          <Select value={period} onValueChange={setPeriod}>
+            <SelectTrigger className="glass-input h-12">
+              <SelectValue placeholder="Period" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="monday-sunday">Monday - Sunday</SelectItem>
+              <SelectItem value="tuesday-sunday">Tuesday - Sunday</SelectItem>
+              <SelectItem value="wednesday-sunday">Wednesday - Sunday</SelectItem>
+              <SelectItem value="thursday-sunday">Thursday - Sunday</SelectItem>
+              <SelectItem value="friday-sunday">Friday - Sunday</SelectItem>
             </SelectContent>
           </Select>
         </div>

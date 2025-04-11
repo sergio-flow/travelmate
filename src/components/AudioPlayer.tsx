@@ -5,7 +5,6 @@ import { PlayIcon, PauseIcon } from './Icons';
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [audioInitialized, setAudioInitialized] = useState(false);
 
   useEffect(() => {
     // Create audio element
@@ -16,64 +15,32 @@ const AudioPlayer = () => {
     const playAudio = async () => {
       try {
         if (audioRef.current) {
-          const playPromise = audioRef.current.play();
-          
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                setIsPlaying(true);
-                setAudioInitialized(true);
-                console.log("Audio started playing automatically");
-              })
-              .catch(error => {
-                console.log("Audio autoplay prevented:", error);
-                setIsPlaying(false);
-                setAudioInitialized(true);
-              });
-          }
+          await audioRef.current.play();
         }
       } catch (error) {
-        console.log("Audio autoplay error:", error);
+        console.log("Audio autoplay prevented:", error);
         setIsPlaying(false);
-        setAudioInitialized(true);
       }
     };
     
     playAudio();
     
-    // Add click event listener to document to handle autoplay restrictions
-    const handleUserInteraction = () => {
-      if (audioRef.current && !isPlaying && audioInitialized) {
-        audioRef.current.play()
-          .then(() => {
-            setIsPlaying(true);
-            console.log("Audio started playing after user interaction");
-          })
-          .catch(err => console.log("Error playing audio after interaction:", err));
-      }
-    };
-
-    document.addEventListener('click', handleUserInteraction);
-    
     // Clean up on unmount
     return () => {
-      document.removeEventListener('click', handleUserInteraction);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
-  }, [audioInitialized, isPlaying]);
+  }, []);
 
   const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch(e => console.log("Error toggling play:", e));
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      audioRef.current?.pause();
+    } else {
+      audioRef.current?.play();
     }
+    setIsPlaying(!isPlaying);
   };
 
   return (
