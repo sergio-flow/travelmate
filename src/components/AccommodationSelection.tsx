@@ -43,9 +43,9 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full min-h-[calc(100vh-100px)]">
       <div className="mb-6">
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start flex-wrap gap-4">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">
               Accommodations in {selectedFlight.destination}
@@ -113,7 +113,7 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
         </div>
       </div>
 
-      <ScrollArea className="h-[600px] pr-4">
+      <ScrollArea className="h-[calc(100vh-320px)] pr-4">
         <div className="space-y-8">
           <div>
             <h3 className="text-xl font-bold text-white mb-4">Booking.com (3 best deals)</h3>

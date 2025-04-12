@@ -4,19 +4,19 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import VideoBackground from "@/components/VideoBackground";
 import AudioPlayer from "@/components/AudioPlayer";
-import SearchForm from "@/components/SearchForm";
 import FlightSelection from "@/components/FlightSelection";
 import AccommodationSelection from "@/components/AccommodationSelection";
 import { mockFlightDeals } from "@/data/mockDeals";
+import OriginSelector from "@/components/OriginSelector";
 
 const Index = () => {
-  const [searchParams, setSearchParams] = useState<any>({});
-  const [currentStep, setCurrentStep] = useState("initial"); // initial, flights, accommodations
+  const [origin, setOrigin] = useState("Cluj-Napoca");
+  const [participants, setParticipants] = useState("Solo");
+  const [currentStep, setCurrentStep] = useState("flights"); // flights, accommodations
   const [selectedFlight, setSelectedFlight] = useState<any>(null);
   
-  const handleSearch = (params: any) => {
-    setSearchParams(params);
-    setCurrentStep("flights");
+  const handleOriginChange = (newOrigin: string) => {
+    setOrigin(newOrigin);
   };
 
   const handleSelectFlight = (flightId: string) => {
@@ -26,7 +26,7 @@ const Index = () => {
   };
 
   const handleNewSearch = () => {
-    setCurrentStep("initial");
+    setCurrentStep("flights");
     setSelectedFlight(null);
   };
 
@@ -40,7 +40,10 @@ const Index = () => {
         <div className="flex items-center">
           <h1 className="text-white text-2xl font-bold">Travel Mate</h1>
         </div>
-        <div className="absolute right-4">
+        
+        <div className="absolute right-4 flex items-center gap-3">
+          <OriginSelector currentOrigin={origin} onOriginChange={handleOriginChange} />
+          
           <Dialog>
             <DialogTrigger asChild>
               <button className="text-white bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">
@@ -83,42 +86,8 @@ const Index = () => {
       </header>
 
       {/* Main content */}
-      <main className="container px-6 pt-20 pb-10 z-10 w-full">
-        {currentStep === "initial" ? (
-          <div className="text-center mb-10">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg animate-pulse-slow">
-              Best travel deals for the next 90 days
-            </h1>
-            
-            <div className="max-w-4xl mx-auto">
-              <SearchForm onSearch={handleSearch} />
-            </div>
-
-            {/* Categories */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
-              <div className="category-card">
-                <h3 className="text-xl font-bold mb-2">Cheapest Flights</h3>
-                <p className="text-white/80">
-                  Find the most affordable flights from your local airport.
-                </p>
-              </div>
-              
-              <div className="category-card">
-                <h3 className="text-xl font-bold mb-2">Best Accommodations</h3>
-                <p className="text-white/80">
-                  Quality hotels and apartments at great prices.
-                </p>
-              </div>
-              
-              <div className="category-card">
-                <h3 className="text-xl font-bold mb-2">Complete Packages</h3>
-                <p className="text-white/80">
-                  All-inclusive travel deals with everything you need.
-                </p>
-              </div>
-            </div>
-          </div>
-        ) : (
+      <main className={`container px-6 pt-20 pb-10 z-10 w-full ${currentStep === "accommodations" ? "max-w-full" : ""}`}>
+        {currentStep === "accommodations" ? (
           <div className="mb-6 flex items-center">
             <button 
               onClick={handleNewSearch} 
@@ -170,19 +139,20 @@ const Index = () => {
               </DialogContent>
             </Dialog>
           </div>
-        )}
+        ) : null}
 
         {currentStep === "flights" && (
           <FlightSelection 
             onSelectFlight={handleSelectFlight} 
-            searchParams={searchParams} 
+            origin={origin}
+            participants={participants}
           />
         )}
 
         {currentStep === "accommodations" && selectedFlight && (
           <AccommodationSelection 
             selectedFlight={selectedFlight} 
-            searchParams={searchParams} 
+            searchParams={{ origin, participants }}
           />
         )}
       </main>

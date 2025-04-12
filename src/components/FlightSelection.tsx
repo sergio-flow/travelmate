@@ -5,24 +5,30 @@ import { mockFlightDeals } from "@/data/mockDeals";
 
 interface FlightSelectionProps {
   onSelectFlight: (flightId: string) => void;
-  searchParams: any;
+  origin: string;
+  participants: string;
 }
 
-const FlightSelection = ({ onSelectFlight, searchParams }: FlightSelectionProps) => {
+const FlightSelection = ({ onSelectFlight, origin, participants }: FlightSelectionProps) => {
+  // Filter flights based on the selected origin
+  const filteredFlights = mockFlightDeals.filter(
+    flight => flight.from === origin || flight.from === "Any"
+  );
+
   return (
     <div className="w-full">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white mb-2">
-          Select your flight from {searchParams.origin || "Selected Origin"}
+          Available flights from {origin}
         </h2>
         <p className="text-white/80">
-          {searchParams.participants || "Solo"} traveler
+          {participants} traveler
         </p>
       </div>
 
-      <ScrollArea className="h-[500px] pr-4">
+      <ScrollArea className="h-[calc(100vh-200px)] pr-4">
         <div className="space-y-4">
-          {mockFlightDeals.map((flight) => (
+          {filteredFlights.map((flight) => (
             <div
               key={flight.id}
               className="glass-card p-4 flex flex-col md:flex-row gap-4 cursor-pointer hover:bg-white/20 transition-colors"
@@ -31,7 +37,7 @@ const FlightSelection = ({ onSelectFlight, searchParams }: FlightSelectionProps)
               <div className="w-full md:w-1/4">
                 <img 
                   src={flight.image} 
-                  alt={flight.destination} 
+                  alt={flight.destination || ""} 
                   className="h-32 w-full object-cover rounded-lg"
                 />
               </div>
@@ -41,8 +47,8 @@ const FlightSelection = ({ onSelectFlight, searchParams }: FlightSelectionProps)
                   <span className="text-xl font-bold text-white">${flight.price}</span>
                 </div>
                 <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <span className="text-white/80">From: {searchParams.origin || "Selected Origin"}</span>
-                  <span className="text-white/80">Duration: {Math.floor(Math.random() * 5) + 2}h {Math.floor(Math.random() * 60)}m</span>
+                  <span className="text-white/80">From: {origin}</span>
+                  <span className="text-white/80">Duration: {flight.duration}</span>
                 </div>
                 <div className="flex flex-col md:flex-row justify-between">
                   <span className="text-white/80">Airline: {flight.airline}</span>
@@ -54,6 +60,13 @@ const FlightSelection = ({ onSelectFlight, searchParams }: FlightSelectionProps)
               </div>
             </div>
           ))}
+          
+          {filteredFlights.length === 0 && (
+            <div className="glass-card p-6 text-center">
+              <p className="text-white text-lg">No flights available from {origin} at the moment.</p>
+              <p className="text-white/70 mt-2">Please try selecting a different origin city.</p>
+            </div>
+          )}
         </div>
       </ScrollArea>
     </div>
