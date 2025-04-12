@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { mockAccommodationDeals } from "@/data/mockDeals";
-import { Share2Icon, Copy, Mail } from "lucide-react";
+import { Share2Icon, Copy, Mail, UserIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
@@ -54,38 +54,7 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
               {searchParams.participants || "Solo"} traveler
             </p>
           </div>
-          <div className="flex gap-3">
-            <button 
-              onClick={handleCopyLink} 
-              className="flex items-center gap-2 bg-white/20 hover:bg-white/30 transition-colors text-white px-4 py-2 rounded-lg"
-            >
-              <Copy size={16} />
-              <span>Copy Trip Link</span>
-            </button>
-            <button 
-              onClick={() => setShowInvite(!showInvite)} 
-              className="flex items-center gap-2 bg-white/20 hover:bg-white/30 transition-colors text-white px-4 py-2 rounded-lg"
-            >
-              <Mail size={16} />
-              <span>Invite Friends</span>
-            </button>
-          </div>
         </div>
-
-        {showInvite && (
-          <form onSubmit={handleInviteFriend} className="glass-card p-4 mt-4 flex gap-3">
-            <Input
-              type="email"
-              placeholder="Friend's email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="glass-input flex-1"
-            />
-            <button type="submit" className="search-button">
-              Send Invite
-            </button>
-          </form>
-        )}
 
         <div className="glass-card p-4 mt-4 mb-6 max-w-xl">
           <div className="flex flex-col md:flex-row gap-4">
@@ -116,8 +85,8 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
       <div className="space-y-8">
         <div>
           <h3 className="text-xl font-bold text-white mb-4">All Available Accommodations</h3>
-          <ScrollArea className="w-full" orientation="horizontal">
-            <div className="flex gap-4 pb-4" style={{ minWidth: "max-content" }}>
+          <div className="overflow-x-auto pb-4">
+            <div className="flex gap-4" style={{ minWidth: "max-content" }}>
               {bookingDeals.map((deal) => (
                 <div key={deal.id} className="glass-card p-4 w-80">
                   <img 
@@ -181,7 +150,55 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                 </div>
               ))}
             </div>
-          </ScrollArea>
+          </div>
+        </div>
+
+        {/* Participants Section */}
+        <div className="mt-8">
+          <h3 className="text-xl font-bold text-white mb-4">Participants</h3>
+          <div className="glass-card p-4 mb-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-white/20 p-3 rounded-full">
+                <UserIcon className="text-white" size={24} />
+              </div>
+              <div>
+                <p className="text-white font-medium">You</p>
+                <p className="text-white/60 text-sm">Trip organizer</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-3 mt-6">
+              <button 
+                onClick={handleCopyLink} 
+                className="flex items-center gap-2 bg-white/20 hover:bg-white/30 transition-colors text-white px-4 py-2 rounded-lg"
+              >
+                <Copy size={16} />
+                <span>Copy Trip Link</span>
+              </button>
+              <button 
+                onClick={() => setShowInvite(!showInvite)} 
+                className="flex items-center gap-2 bg-white/20 hover:bg-white/30 transition-colors text-white px-4 py-2 rounded-lg"
+              >
+                <Mail size={16} />
+                <span>Invite Friends</span>
+              </button>
+            </div>
+
+            {showInvite && (
+              <form onSubmit={handleInviteFriend} className="mt-4 flex gap-3">
+                <Input
+                  type="email"
+                  placeholder="Friend's email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="glass-input flex-1"
+                />
+                <button type="submit" className="search-button">
+                  Send Invite
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </div>

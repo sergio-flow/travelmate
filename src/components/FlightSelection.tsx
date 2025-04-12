@@ -19,7 +19,7 @@ const FlightSelection = ({ onSelectFlight, origin, participants }: FlightSelecti
     <div className="w-full max-w-2xl mx-auto">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white mb-2">
-          Available flights from {origin}
+          Cheapest travel deals from {origin}
         </h2>
         <p className="text-white/80">
           {participants} traveler

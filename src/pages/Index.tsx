@@ -98,25 +98,14 @@ const Index = () => {
               Home
             </button>
           </div>
-        ) : (
-          <>
-            <div className="mb-10 text-center">
-              <h2 className="text-4xl font-bold text-white mb-4">Find Your Perfect Adventure</h2>
-              <p className="text-white/80 text-lg max-w-2xl mx-auto">
-                Discover amazing destinations and create unforgettable memories with friends and family
-              </p>
-            </div>
-          </>
-        )}
+        ) : null}
 
         {currentStep === "flights" && (
-          <>
-            <FlightSelection 
-              onSelectFlight={handleSelectFlight} 
-              origin={origin}
-              participants={participants}
-            />
-          </>
+          <FlightSelection 
+            onSelectFlight={handleSelectFlight} 
+            origin={origin}
+            participants={participants}
+          />
         )}
 
         {currentStep === "accommodations" && selectedFlight && (
