@@ -6,7 +6,8 @@ interface VideoBackgroundProps {
 }
 
 const VideoBackground = ({ selectedDestination }: VideoBackgroundProps) => {
-  let videoURL = "https://www.youtube.com/embed/OF2nczyQXiQ?start=300&autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=OF2nczyQXiQ&mute=1";
+  // https://youtu.be/lz6lhCdmAgQ?si=DSFlbfmR_GtWFZez&t=118
+  let videoURL = "https://www.youtube.com/embed/lz6lhCdmAgQ?start=300&autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=OF2nczyQXiQ&mute=1";
   
   // Change video based on destination
   if (selectedDestination) {
