@@ -8,6 +8,7 @@ import FlightSelection from "@/components/FlightSelection";
 import AccommodationSelection from "@/components/AccommodationSelection";
 import { mockFlightDeals } from "@/data/mockDeals";
 import OriginSelector from "@/components/OriginSelector";
+import ToggleContent from "@/components/ToggleContent";
 
 const Index = () => {
   const [origin, setOrigin] = useState("Cluj");
@@ -40,6 +41,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative">
       <VideoBackground selectedDestination={selectedFlight?.destination} />
+      <ToggleContent />
       <AudioPlayer />
 
       {/* Header */}
