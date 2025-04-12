@@ -21,6 +21,15 @@ const Index = () => {
     // Add other properties of a flight deal as needed
   }
 
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     document.body.classList.add('show-video');
+  //   }, 3000);
+  
+  //   // Optional cleanup (in case component unmounts before timeout)
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
+
   const [selectedFlight, setSelectedFlight] = useState<FlightDeal | null>(null);
 
   const handleOriginChange = (newOrigin: string) => {

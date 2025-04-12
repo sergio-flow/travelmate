@@ -86,7 +86,7 @@
   height: 100vh;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  opacity: 0.8;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -214,4 +214,15 @@ body.visibility-hidden main {
 body.visibility-visible main {
   visibility: visible;
   transform: translateY(0);
+}
+
+body .video-background {
+  opacity: 0;
+  animation: fadeInDelayed 4s ease 10s forwards;
+}
+
+@keyframes fadeInDelayed {
+  to {
+    opacity: 0.8;
+  }
 }

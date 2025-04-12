@@ -23,7 +23,7 @@ const VideoBackground = ({ selectedDestination }: VideoBackgroundProps) => {
       <iframe 
         src={videoURL}
         className="video-background"
-        style={{ opacity: 0.75 }}
+        // style={{ opacity: 0.75 }}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
