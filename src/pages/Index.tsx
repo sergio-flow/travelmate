@@ -10,7 +10,7 @@ import { mockFlightDeals } from "@/data/mockDeals";
 import OriginSelector from "@/components/OriginSelector";
 
 const Index = () => {
-  const [origin, setOrigin] = useState("Cluj-Napoca");
+  const [origin, setOrigin] = useState("Cluj");
   const [participants, setParticipants] = useState("Solo");
   const [currentStep, setCurrentStep] = useState("flights"); // flights, accommodations
   interface FlightDeal {
@@ -43,7 +43,7 @@ const Index = () => {
       <AudioPlayer />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full p-4 z-10 bg-black flex justify-center items-center">
+      <header className="fixed top-0 left-0 w-full p-4 z-10 flex justify-center items-center">
         {/* <div className="absolute left-4">
           <OriginSelector currentOrigin={origin} onOriginChange={handleOriginChange} />
         </div> */}
