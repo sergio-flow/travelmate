@@ -7,8 +7,10 @@ export const mockFlightDeals: Deal[] = [
     title: 'Direct Flight to Rome',
     from: 'Bucharest',
     to: 'Rome',
+    destination: 'Rome',
     duration: '2h 15m',
     price: 99,
+    airline: 'Wizz Air',
     image: 'https://images.unsplash.com/photo-1525874684015-58379d421a52?q=80&w=1470&auto=format&fit=crop'
   },
   {
@@ -16,8 +18,10 @@ export const mockFlightDeals: Deal[] = [
     title: 'Paris Weekend Getaway',
     from: 'Cluj-Napoca',
     to: 'Paris',
+    destination: 'Paris',
     duration: '2h 45m',
     price: 129,
+    airline: 'Air France',
     image: 'https://images.unsplash.com/photo-1471623432079-b009d30b6729?q=80&w=1470&auto=format&fit=crop'
   },
   {
@@ -25,8 +29,10 @@ export const mockFlightDeals: Deal[] = [
     title: 'Barcelona Summer Escape',
     from: 'Bucharest',
     to: 'Barcelona',
+    destination: 'Barcelona',
     duration: '3h 10m',
     price: 119,
+    airline: 'Ryanair',
     image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1470&auto=format&fit=crop'
   },
   {
@@ -34,8 +40,10 @@ export const mockFlightDeals: Deal[] = [
     title: 'Vienna City Break',
     from: 'Chisinau',
     to: 'Vienna',
+    destination: 'Vienna',
     duration: '1h 45m',
     price: 89,
+    airline: 'Austrian Airlines',
     image: 'https://images.unsplash.com/photo-1516550893885-498b67da269d?q=80&w=1472&auto=format&fit=crop'
   },
   {
@@ -43,8 +51,10 @@ export const mockFlightDeals: Deal[] = [
     title: 'Amsterdam Adventure',
     from: 'Cluj-Napoca',
     to: 'Amsterdam',
+    destination: 'Amsterdam',
     duration: '2h 30m',
     price: 139,
+    airline: 'KLM',
     image: 'https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?q=80&w=1470&auto=format&fit=crop'
   },
   {
@@ -52,8 +62,10 @@ export const mockFlightDeals: Deal[] = [
     title: 'London Express',
     from: 'Bucharest',
     to: 'London',
+    destination: 'London',
     duration: '3h 20m',
     price: 149,
+    airline: 'British Airways',
     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1470&auto=format&fit=crop'
   }
 ];

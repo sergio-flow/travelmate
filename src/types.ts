@@ -9,10 +9,12 @@ export interface Deal {
   from?: string;
   to?: string;
   duration?: string;
+  airline?: string; // Added this property
   
   // Accommodation deal specific properties
   location?: string;
   rating?: number;
+  name?: string; // Added this property
   
   // Package deal specific properties
   destination?: string;

@@ -122,10 +122,10 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                 <div key={deal.id} className="glass-card p-4">
                   <img 
                     src={deal.image} 
-                    alt={deal.name} 
+                    alt={deal.title} 
                     className="h-32 w-full object-cover rounded-lg mb-2"
                   />
-                  <h4 className="text-lg font-bold text-white">{deal.name}</h4>
+                  <h4 className="text-lg font-bold text-white">{deal.title}</h4>
                   <div className="flex justify-between my-1">
                     <span className="text-white/80">{deal.rating}/5 ★</span>
                     <span className="font-bold text-white">${deal.price}/night</span>
@@ -145,10 +145,10 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                 <div key={deal.id} className="glass-card p-4">
                   <img 
                     src={deal.image} 
-                    alt={deal.name} 
+                    alt={deal.title} 
                     className="h-32 w-full object-cover rounded-lg mb-2"
                   />
-                  <h4 className="text-lg font-bold text-white">{deal.name}</h4>
+                  <h4 className="text-lg font-bold text-white">{deal.title}</h4>
                   <div className="flex justify-between my-1">
                     <span className="text-white/80">{deal.rating}/5 ★</span>
                     <span className="font-bold text-white">${deal.price}/night</span>
@@ -168,10 +168,10 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                 <div key={deal.id} className="glass-card p-4">
                   <img 
                     src={deal.image} 
-                    alt={deal.name} 
+                    alt={deal.title} 
                     className="h-32 w-full object-cover rounded-lg mb-2"
                   />
-                  <h4 className="text-lg font-bold text-white">{deal.name}</h4>
+                  <h4 className="text-lg font-bold text-white">{deal.title}</h4>
                   <div className="flex justify-between my-1">
                     <span className="text-white/80">{deal.rating}/5 ★</span>
                     <span className="font-bold text-white">${deal.price}/night</span>
