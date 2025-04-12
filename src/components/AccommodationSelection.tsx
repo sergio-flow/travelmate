@@ -87,9 +87,9 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
           </form>
         )}
 
-        <div className="glass-card p-4 mt-4 mb-6">
+        <div className="glass-card p-4 mt-4 mb-6 max-w-xl">
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="w-full md:w-1/4">
+            <div className="w-full md:w-1/3">
               <img 
                 src={selectedFlight.image} 
                 alt={selectedFlight.destination} 
@@ -113,19 +113,22 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
         </div>
       </div>
 
-      <ScrollArea className="h-[calc(100vh-320px)] pr-4">
-        <div className="space-y-8">
-          <div>
-            <h3 className="text-xl font-bold text-white mb-4">Booking.com (3 best deals)</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-xl font-bold text-white mb-4">All Available Accommodations</h3>
+          <ScrollArea className="w-full" orientation="horizontal">
+            <div className="flex gap-4 pb-4" style={{ minWidth: "max-content" }}>
               {bookingDeals.map((deal) => (
-                <div key={deal.id} className="glass-card p-4">
+                <div key={deal.id} className="glass-card p-4 w-80">
                   <img 
                     src={deal.image} 
                     alt={deal.title} 
                     className="h-32 w-full object-cover rounded-lg mb-2"
                   />
-                  <h4 className="text-lg font-bold text-white">{deal.title}</h4>
+                  <div className="flex justify-between items-start mb-1">
+                    <h4 className="text-lg font-bold text-white">{deal.title}</h4>
+                    <span className="text-xs bg-indigo-600 text-white px-2 py-1 rounded">Booking.com</span>
+                  </div>
                   <div className="flex justify-between my-1">
                     <span className="text-white/80">{deal.rating}/5 ★</span>
                     <span className="font-bold text-white">${deal.price}/night</span>
@@ -135,20 +138,18 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                   </button>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold text-white mb-4">Expedia (3 best deals)</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              
               {expediaDeals.map((deal) => (
-                <div key={deal.id} className="glass-card p-4">
+                <div key={deal.id} className="glass-card p-4 w-80">
                   <img 
                     src={deal.image} 
                     alt={deal.title} 
                     className="h-32 w-full object-cover rounded-lg mb-2"
                   />
-                  <h4 className="text-lg font-bold text-white">{deal.title}</h4>
+                  <div className="flex justify-between items-start mb-1">
+                    <h4 className="text-lg font-bold text-white">{deal.title}</h4>
+                    <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded">Expedia</span>
+                  </div>
                   <div className="flex justify-between my-1">
                     <span className="text-white/80">{deal.rating}/5 ★</span>
                     <span className="font-bold text-white">${deal.price}/night</span>
@@ -158,20 +159,18 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                   </button>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold text-white mb-4">Airbnb (3 best deals)</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              
               {airbnbDeals.map((deal) => (
-                <div key={deal.id} className="glass-card p-4">
+                <div key={deal.id} className="glass-card p-4 w-80">
                   <img 
                     src={deal.image} 
                     alt={deal.title} 
                     className="h-32 w-full object-cover rounded-lg mb-2"
                   />
-                  <h4 className="text-lg font-bold text-white">{deal.title}</h4>
+                  <div className="flex justify-between items-start mb-1">
+                    <h4 className="text-lg font-bold text-white">{deal.title}</h4>
+                    <span className="text-xs bg-red-600 text-white px-2 py-1 rounded">Airbnb</span>
+                  </div>
                   <div className="flex justify-between my-1">
                     <span className="text-white/80">{deal.rating}/5 ★</span>
                     <span className="font-bold text-white">${deal.price}/night</span>
@@ -182,9 +181,9 @@ const AccommodationSelection = ({ selectedFlight, searchParams }: AccommodationS
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollArea>
         </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 };
