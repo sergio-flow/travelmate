@@ -68,10 +68,10 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
 
       <ScrollArea className="pt-5 pb-20 px-10">
         <div className="space-y-4">
-          {Object.entries(sortedFlightsByCity).map(([city, flights]: [string, Flight[]]) => {
+          {Object.entries(sortedFlightsByCity).map(([city, flights]) => {
             const flight = flights[0];
-            const timeFrom = moment(flight.inbound_departure).format("ddd HH:mm");
-            const timeTo = moment(flight.inbound_arrival).format("ddd HH:mm");
+            const timeFrom = moment(flight.outbound_depart_local_time).format("ddd HH:mm");
+            const timeTo = moment(flight.inbound_arrival_local_time).format("ddd HH:mm");
             const duration = moment.duration(moment(flight.inbound_arrival).diff(moment(flight.inbound_departure)));
             const durationString = `${duration.hours()}h ${duration.minutes()}m`;
             // const price = Math.ceil(flight.price_eur);
@@ -111,7 +111,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                       <div>{travelTimeString}</div>
                     </div>
                     <div className="flight-dates">
-                      <div>{flights.length} flights • &euro;{price}+</div>
+                      <div>{(flights as []).length} flights • &euro;{price}+</div>
                       {/* <div>{dateTo}</div> */}
                     </div>
                   </div>
