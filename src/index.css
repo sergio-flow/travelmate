@@ -218,7 +218,7 @@ body.visibility-visible main {
 
 body .video-background {
   opacity: 0;
-  animation: fadeInDelayed 40s ease 0s forwards;
+  animation: fadeInDelayed 30s ease 0s forwards;
 }
 
 @keyframes fadeInDelayed {
