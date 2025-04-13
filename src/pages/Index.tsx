@@ -9,29 +9,27 @@ import AccommodationSelection from "@/components/AccommodationSelection";
 import { mockFlightDeals } from "@/data/mockDeals";
 import OriginSelector from "@/components/OriginSelector";
 import ToggleContent from "@/components/ToggleContent";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://xarsrdkfvyzajymlrtrs.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhcnNyZGtmdnl6YWp5bWxydHJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQxMTkxOTIsImV4cCI6MjA1OTY5NTE5Mn0._LdQZdhXGKvP6_ATQkoWzcRtz43tRzOQLo8DU4vWcGM");
 
 const Index = () => {
   const [origin, setOrigin] = useState("Cluj");
   const [participants, setParticipants] = useState("Solo");
   const [currentStep, setCurrentStep] = useState("flights"); // flights, accommodations
-  interface FlightDeal {
-    id: string;
-    destination?: string;
-    price: number;
-    // Add other properties of a flight deal as needed
+ 
+  const [flights, setFlights] = useState([]);
+  const [selectedFlight, setSelectedFlight] = useState(null);
+
+  useEffect(() => {
+    getFlights();
+  }, []);
+
+  async function getFlights() {
+    const { data } = await supabase.from("flights").select();
+    console.log("Fetched flights:", data);
+    setFlights(data);
   }
-
-  // useEffect(() => {
-  //   const timeoutId = setTimeout(() => {
-  //     document.body.classList.add('show-video');
-  //   }, 3000);
-  
-  //   // Optional cleanup (in case component unmounts before timeout)
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
-
-  const [selectedFlight, setSelectedFlight] = useState<FlightDeal | null>(null);
-
   const handleOriginChange = (newOrigin: string) => {
     setOrigin(newOrigin);
   };
@@ -64,13 +62,15 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Main content */}
       <main className={`container px-6 pt-20 pb-10 z-10 w-full ${currentStep === "accommodations" ? "max-w-full" : ""}`}>
-        <FlightSelection
-          onSelectFlight={handleSelectFlight}
-          origin={origin}
-          participants={participants}
-        />
+        {flights.length > 0 && (
+          <FlightSelection
+            flights={flights}
+            onSelectFlight={handleSelectFlight}
+            origin={origin}
+            participants={participants}
+          />
+        )}
       </main>
     </div>
   );
