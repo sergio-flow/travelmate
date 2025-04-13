@@ -56,7 +56,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
   // console.log("flightsByCity", flightsByCity)
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-lg mx-auto">
       <div className="mb-8">
         <h2 className="text-4xl font-bold text-white text-center">
           Cheapest destinations from {origin}<br />next week
@@ -87,13 +87,6 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                 className="glass-card p-4 flex flex-col md:flex-row gap-8 cursor-pointer hover:bg-white/20 transition-colors"
                 onClick={() => onSelectFlight(flight.id)}
               >
-                <div className="w-full md:w-1/4">
-                  <img
-                    src={`/cities/${city}.jpg`}
-                    alt={flight.destination || ""}
-                    className="h-32 w-full object-cover rounded-lg"
-                  />
-                </div>
                 <div className="flex-1">
                   <div className="itinerary-card">
                     <div className="itinerary-times">
@@ -134,6 +127,15 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                     View all flights
                   </button> */}
                 </div>
+
+
+                {/* <div className="w-full md:w-1/4">
+                  <img
+                    src={`/cities/${city}.jpg`}
+                    alt={flight.destination || ""}
+                    className="h-32 w-full object-cover rounded-lg"
+                  />
+                </div> */}
               </div>
             )
           })}
