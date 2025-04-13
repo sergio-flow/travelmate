@@ -95,11 +95,12 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                       <div>{timeTo}</div>
                     </div>
                     <div className="itinerary-locations">
-                      <div>{flight.outbound_depart_city}</div>
-                      <div>{city}</div>
+                      <div>{flight.outbound_depart_airport}</div>
+                      <div>{flight.outbound_arrival_city}</div>
+                      <div>{flight.outbound_depart_airport}</div>
                     </div>
                     <div className="flight-duration">
-                      <div className="plane-icon">✈</div>
+                      {/* <div className="plane-icon">✈</div> */}
                       <div className="flight-duration-line"></div>
                       <div>{travelTimeString}</div>
                     </div>
