@@ -10,6 +10,7 @@ import { mockFlightDeals } from "@/data/mockDeals";
 import OriginSelector from "@/components/OriginSelector";
 import ToggleContent from "@/components/ToggleContent";
 import { createClient } from "@supabase/supabase-js";
+import CityVibes from "@/components/CityVibes";
 
 const supabase = createClient("https://xarsrdkfvyzajymlrtrs.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhcnNyZGtmdnl6YWp5bWxydHJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQxMTkxOTIsImV4cCI6MjA1OTY5NTE5Mn0._LdQZdhXGKvP6_ATQkoWzcRtz43tRzOQLo8DU4vWcGM");
 
@@ -50,6 +51,7 @@ const Index = () => {
       <VideoBackground selectedDestination={selectedFlight?.destination} />
       <ToggleContent />
       <AudioPlayer />
+      <CityVibes />
 
       {/* Header */}
       <header className="fixed top-0 left-0 w-full p-4 z-10 flex justify-center items-center">
