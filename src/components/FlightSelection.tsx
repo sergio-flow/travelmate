@@ -91,7 +91,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
 
               >
                 <div className="flex-1">
-                  <div className="itinerary-card"
+                  <div className="itinerary-card mb-4"
                     onClick={() => {
                       setIsExpanded(isExpanded === city ? "" : city);
                     }}

@@ -134,7 +134,7 @@ const FlightItineraries = ({ flightData }) => {
   const hasMoreFlights = visibleFlights < flights.length;
 
   return (
-    <div className="space-y-4 mt-4">
+    <div className="space-y-4">
       {displayedFlights.map((flight, key) => (
         <FlightCard
           key={key}
