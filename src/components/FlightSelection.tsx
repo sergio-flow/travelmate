@@ -111,10 +111,9 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                       <div className="flight-duration-line"></div>
                       <div>{travelTimeString}</div>
                     </div>
-                    <div className="flight-dates">
+                    {/* <div className="flight-dates">
                       <div>{(flights as []).length} flights • &euro;{price}+</div>
-                      {/* <div>{dateTo}</div> */}
-                    </div>
+                    </div> */}
                   </div>
 
                   {isExpanded && isExpanded === city && (

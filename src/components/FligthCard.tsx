@@ -29,7 +29,7 @@ const FlightCard = ({ flight }) => {
   };
 
   return (
-    <div className="w-full max-w-xl rounded-lg glass-card p-4 pb-0 pt-0 shadow-md mb-4 text-white">
+    <div className="w-full max-w-xl rounded-lg glass-card p-4 pb-0 pt-0 shadow-md text-white">
       <div className="flex">
         {/* Main flight info section - 75% width */}
         <div className="w-3/4 pr-4 pt-4">
@@ -107,7 +107,7 @@ const FlightCard = ({ flight }) => {
 
         {/* Price and Select button section - 25% width */}
         <div className="flex w-1/4 flex-col items-center justify-center border-l border-white/40 pl-4">
-          <div className="mb-4 text-center">
+          <div className="text-center">
             <span className="text-2xl font-bold">€{price}</span>
           </div>
           {/* <button 
@@ -123,7 +123,7 @@ const FlightCard = ({ flight }) => {
 };
 
 const FlightItineraries = ({ flightData }) => {
-  const [visibleFlights, setVisibleFlights] = useState(3);
+  const [visibleFlights, setVisibleFlights] = useState(2);
   const flights = Object.values(flightData);
 
   const handleLoadMore = () => {
@@ -134,7 +134,7 @@ const FlightItineraries = ({ flightData }) => {
   const hasMoreFlights = visibleFlights < flights.length;
 
   return (
-    <div className="space-y-4 mt-4 mb-2">
+    <div className="space-y-4 mt-4">
       {displayedFlights.map((flight, key) => (
         <FlightCard
           key={key}
@@ -142,7 +142,7 @@ const FlightItineraries = ({ flightData }) => {
         />
       ))}
 
-      {hasMoreFlights && (
+      {/* {hasMoreFlights && (
         <div className="flex justify-center mt-4 mb-10">
           <button
             onClick={handleLoadMore}
@@ -151,7 +151,7 @@ const FlightItineraries = ({ flightData }) => {
             Load more
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
