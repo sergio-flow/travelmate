@@ -49,7 +49,7 @@ const FlightCard = ({ flight }) => {
                 <div className="flex items-center">
                   <span className="text-sm font-medium text-white/60">{outboundTravelTimeString}</span>
                   <img
-                    src={carrierLogo(flight.outbound_carrier_name || "W4")}
+                    src={carrierLogo(flight.outbound_carrier_code)}
                     alt={flight.outbound_carrier_name}
                     className="ml-2 h-4 rounded"
                   />
@@ -83,7 +83,7 @@ const FlightCard = ({ flight }) => {
                 <div className="flex items-center">
                   <span className="text-sm font-medium text-white/60">{inboundTravelTimeString}</span>
                   <img
-                    src={carrierLogo(flight.inbound_carrier_name || "RA")}
+                    src={carrierLogo(flight.inbound_carrier_code)}
                     alt={flight.inbound_carrier_name}
                     className="ml-2 h-4 rounded"
                   />
