@@ -123,7 +123,7 @@ const FlightCard = ({ flight }) => {
 };
 
 const FlightItineraries = ({ flightData }) => {
-  const [visibleFlights, setVisibleFlights] = useState(2);
+  const [visibleFlights, setVisibleFlights] = useState(3);
   const flights = Object.values(flightData);
 
   const handleLoadMore = () => {
@@ -142,7 +142,7 @@ const FlightItineraries = ({ flightData }) => {
         />
       ))}
 
-      {/* {hasMoreFlights && (
+      {hasMoreFlights && (
         <div className="flex justify-center mt-4 mb-10">
           <button
             onClick={handleLoadMore}
@@ -151,7 +151,7 @@ const FlightItineraries = ({ flightData }) => {
             Load more
           </button>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
