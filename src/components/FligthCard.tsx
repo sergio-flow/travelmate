@@ -51,7 +51,7 @@ const FlightCard = ({ flight }) => {
                   <img
                     src={carrierLogo(flight.outbound_carrier_code)}
                     alt={flight.outbound_carrier_name}
-                    className="ml-2 h-4 rounded"
+                    className="ml-2 h-4 rounded bg-white"
                   />
                 </div>
                 <div className="mt-1 flex w-full items-center">
@@ -85,7 +85,7 @@ const FlightCard = ({ flight }) => {
                   <img
                     src={carrierLogo(flight.inbound_carrier_code)}
                     alt={flight.inbound_carrier_name}
-                    className="ml-2 h-4 rounded"
+                    className="ml-2 h-4 rounded bg-white"
                   />
                 </div>
                 <div className="mt-1 flex w-full items-center">
