@@ -248,6 +248,10 @@ body .video-background {
     display: none;
   }
 
+  .itinerary-times {
+    font-size: .6rem;
+  }
+
   .city-vibes,
   .toggle-content,
   .audio-player {
