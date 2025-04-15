@@ -3,12 +3,12 @@ import moment from 'moment';
 
 const FlightCard = ({ flight }) => {
   // Format outbound times
-  const outboundDepartTime = moment(flight.outbound_depart_local_time).format("D MMM ha");
-  const outboundArrivalTime = moment(flight.outbound_arrival_local_time).format("D MMM ha");
+  const outboundDepartTime = moment(flight.outbound_depart_local_time).format("ddd ha");
+  const outboundArrivalTime = moment(flight.outbound_arrival_local_time).format("ddd ha");
 
   // Format inbound times, Format Fri 6pm
-  const inboundDepartTime = moment(flight.inbound_depart_local_time).format("D MMM ha");
-  const inboundArrivalTime = moment(flight.inbound_arrival_local_time).format("D MMM ha");
+  const inboundDepartTime = moment(flight.inbound_depart_local_time).format("ddd ha");
+  const inboundArrivalTime = moment(flight.inbound_arrival_local_time).format("ddd ha");
 
   // Check if arrival is next day
   const isInboundNextDay = moment(flight.inbound_arrival_local_time).diff(moment(flight.inbound_depart_local_time), 'days') > 0;
