@@ -3,12 +3,12 @@ import moment from 'moment';
 
 const FlightCard = ({ flight }) => {
   // Format outbound times
-  const outboundDepartTime = moment(flight.outbound_depart_local_time).format("ddd ha");
-  const outboundArrivalTime = moment(flight.outbound_arrival_local_time).format("ddd ha");
+  const outboundDepartTime = moment(flight.outbound_depart_local_time).format("D MMM ha");
+  const outboundArrivalTime = moment(flight.outbound_arrival_local_time).format("D MMM ha");
 
   // Format inbound times, Format Fri 6pm
-  const inboundDepartTime = moment(flight.inbound_depart_local_time).format("ddd ha");
-  const inboundArrivalTime = moment(flight.inbound_arrival_local_time).format("ddd ha");
+  const inboundDepartTime = moment(flight.inbound_depart_local_time).format("D MMM ha");
+  const inboundArrivalTime = moment(flight.inbound_arrival_local_time).format("D MMM ha");
 
   // Check if arrival is next day
   const isInboundNextDay = moment(flight.inbound_arrival_local_time).diff(moment(flight.inbound_depart_local_time), 'days') > 0;
@@ -41,7 +41,7 @@ const FlightCard = ({ flight }) => {
 
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-md font-bold">{outboundDepartTime}</span>
+                <span className="text-xs uppercase font-bold">{outboundDepartTime}</span>
                 <span className="text-lg font-medium">{flight.outbound_depart_airport}</span>
               </div>
 
@@ -61,7 +61,7 @@ const FlightCard = ({ flight }) => {
               </div>
 
               <div className="flex flex-col items-end">
-                <span className="text-md font-bold">{outboundArrivalTime}</span>
+                <span className="text-xs uppercase font-bold">{outboundArrivalTime}</span>
                 <span className="text-lg font-medium">{flight.outbound_arrival_airport}</span>
               </div>
             </div>
@@ -75,7 +75,7 @@ const FlightCard = ({ flight }) => {
 
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-md font-bold">{inboundDepartTime}</span>
+                <span className="text-xs uppercase font-bold">{inboundDepartTime}</span>
                 <span className="text-lg font-medium">{flight.inbound_depart_airport}</span>
               </div>
 
@@ -96,7 +96,7 @@ const FlightCard = ({ flight }) => {
 
               <div className="flex flex-col items-end">
                 <div className="flex items-center">
-                  <span className="text-md font-bold">{inboundArrivalTime}</span>
+                  <span className="text-xs uppercase font-bold">{inboundArrivalTime}</span>
                   {isInboundNextDay && <sup className="text-xs font-medium text-gray-500">+1</sup>}
                 </div>
                 <span className="text-lg font-medium">{flight.inbound_arrival_airport}</span>
