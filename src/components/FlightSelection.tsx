@@ -91,7 +91,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
 
               >
                 <div className="flex-1">
-                  <div className="itinerary-card mb-4"
+                  <div className="itinerary-card mb-0"
                     onClick={() => {
                       setIsExpanded(isExpanded === city ? "" : city);
                     }}
@@ -111,9 +111,9 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                       <div className="flight-duration-line"></div>
                       <div>{travelTimeString}</div>
                     </div>
-                    {/* <div className="flight-dates">
-                      <div>{(flights as []).length} flights • &euro;{price}+</div>
-                    </div> */}
+                    <div className="flight-dates">
+                      <div className="text-center">Starting from &euro;{price}</div>
+                    </div>
                   </div>
 
                   {isExpanded && isExpanded === city && (
