@@ -104,7 +104,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                     <div className="itinerary-locations">
                       <div>{flight.outbound_depart_airport}</div>
                       <div>{flight.outbound_arrival_city}</div>
-                      <div>{flight.outbound_arrival_airport}</div>
+                      <div>{flight.outbound_depart_airport}</div>
                     </div>
                     <div className="flight-duration">
                       {/* <div className="plane-icon">✈</div> */}
