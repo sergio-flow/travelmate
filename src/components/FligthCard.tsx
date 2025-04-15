@@ -1,67 +1,67 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-const FlightCard = ({ flight, onSelect }) => {
+const FlightCard = ({ flight }) => {
   // Format outbound times
   const outboundDepartTime = moment(flight.outbound_depart_local_time).format("HH:mm");
   const outboundArrivalTime = moment(flight.outbound_arrival_local_time).format("HH:mm");
-  
+
   // Format inbound times
   const inboundDepartTime = moment(flight.inbound_depart_local_time).format("HH:mm");
   const inboundArrivalTime = moment(flight.inbound_arrival_local_time).format("HH:mm");
-  
+
   // Check if arrival is next day
   const isInboundNextDay = moment(flight.inbound_arrival_local_time).diff(moment(flight.inbound_depart_local_time), 'days') > 0;
-  
+
   // Format durations
   const outboundTravelTime = moment.duration(flight.outbound_duration, "seconds");
   const outboundTravelTimeString = `${outboundTravelTime.hours()}h ${outboundTravelTime.minutes()}m`;
-  
+
   const inboundTravelTime = moment.duration(flight.inbound_duration, "seconds");
   const inboundTravelTimeString = `${inboundTravelTime.hours()}h ${inboundTravelTime.minutes()}m`;
-  
+
   // Format price (rounded up to nearest 10)
   const price = Math.ceil(Math.ceil(flight.price_eur) / 10) * 10;
-  
+
   // Get carrier logo
   const carrierLogo = (airline) => {
     return `https://images.kiwi.com/airlines/64x64/${airline}.png?default=airline.png`;
   };
 
   return (
-    <div className="w-full max-w-xl rounded-lg bg-white p-4 shadow-md mb-4">
+    <div className="w-full max-w-xl rounded-lg glass-card p-4 pb-0 pt-0 shadow-md mb-4 text-white">
       <div className="flex">
         {/* Main flight info section - 75% width */}
-        <div className="w-3/4 pr-4">
+        <div className="w-3/4 pr-4 pt-4">
           {/* Outbound Section */}
-          <div className="border-b pb-4">
-            <div className="mb-2">
+          <div className="">
+            {/* <div className="mb-2">
               <span className="font-medium text-gray-600">Outbound</span>
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-2xl font-bold">{outboundDepartTime}</span>
+                <span className="text-md font-bold">Fri {outboundDepartTime}</span>
                 <span className="text-lg font-medium">{flight.outbound_depart_airport}</span>
               </div>
 
               <div className="mx-2 flex flex-grow flex-col items-center">
                 <div className="flex items-center">
-                  <span className="text-sm font-medium text-gray-600">{outboundTravelTimeString}</span>
-                  <img 
-                    src={carrierLogo(flight.outbound_carrier_name)} 
-                    alt={flight.outbound_carrier_name} 
-                    className="ml-2 h-4" 
+                  <span className="text-sm font-medium text-white/60">{outboundTravelTimeString}</span>
+                  <img
+                    src={carrierLogo(flight.outbound_carrier_name || "W4")}
+                    alt={flight.outbound_carrier_name}
+                    className="ml-2 h-4 rounded"
                   />
                 </div>
                 <div className="mt-1 flex w-full items-center">
                   <div className="h-0.5 flex-grow bg-gray-300"></div>
                 </div>
-                <span className="mt-1 text-sm font-medium text-gray-600">Direct</span>
+                <span className="mt-1 text-sm font-medium text-white/60">Direct</span>
               </div>
 
               <div className="flex flex-col items-end">
-                <span className="text-2xl font-bold">{outboundArrivalTime}</span>
+                <span className="text-md font-bold">Sun {outboundArrivalTime}</span>
                 <span className="text-lg font-medium">{flight.outbound_arrival_airport}</span>
               </div>
             </div>
@@ -69,34 +69,34 @@ const FlightCard = ({ flight, onSelect }) => {
 
           {/* Inbound Section */}
           <div className="py-4">
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <span className="font-medium text-gray-600">Inbound</span>
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-2xl font-bold">{inboundDepartTime}</span>
+                <span className="text-md font-bold">Sun {inboundDepartTime}</span>
                 <span className="text-lg font-medium">{flight.inbound_depart_airport}</span>
               </div>
 
               <div className="mx-2 flex flex-grow flex-col items-center">
                 <div className="flex items-center">
-                  <span className="text-sm font-medium text-gray-600">{inboundTravelTimeString}</span>
-                  <img 
-                    src={carrierLogo(flight.inbound_carrier_name)} 
-                    alt={flight.inbound_carrier_name} 
-                    className="ml-2 h-4" 
+                  <span className="text-sm font-medium text-white/60">{inboundTravelTimeString}</span>
+                  <img
+                    src={carrierLogo(flight.inbound_carrier_name || "RA")}
+                    alt={flight.inbound_carrier_name}
+                    className="ml-2 h-4 rounded"
                   />
                 </div>
                 <div className="mt-1 flex w-full items-center">
                   <div className="h-0.5 flex-grow bg-gray-300"></div>
                 </div>
-                <span className="mt-1 text-sm font-medium text-gray-600">Direct</span>
+                <span className="mt-1 text-sm font-medium text-white/60">Direct</span>
               </div>
 
               <div className="flex flex-col items-end">
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">{inboundArrivalTime}</span>
+                  <span className="text-md font-bold">Sun {inboundArrivalTime}</span>
                   {isInboundNextDay && <sup className="text-xs font-medium text-gray-500">+1</sup>}
                 </div>
                 <span className="text-lg font-medium">{flight.inbound_arrival_airport}</span>
@@ -106,50 +106,49 @@ const FlightCard = ({ flight, onSelect }) => {
         </div>
 
         {/* Price and Select button section - 25% width */}
-        <div className="flex w-1/4 flex-col items-center justify-center border-l pl-4">
+        <div className="flex w-1/4 flex-col items-center justify-center border-l border-white/40 pl-4">
           <div className="mb-4 text-center">
             <span className="text-2xl font-bold">€{price}</span>
           </div>
-          <button 
+          {/* <button 
             className="w-full rounded bg-green-600 py-3 font-medium text-white transition hover:bg-green-700"
             onClick={() => onSelect(flight.id)}
           >
             Select
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
   );
 };
 
-const FlightItineraries = ({ flightData, onSelectFlight }) => {
+const FlightItineraries = ({ flightData }) => {
   const [visibleFlights, setVisibleFlights] = useState(3);
   const flights = Object.values(flightData);
-  
+
   const handleLoadMore = () => {
     setVisibleFlights(prev => Math.min(prev + 3, flights.length));
   };
-  
+
   const displayedFlights = flights.slice(0, visibleFlights);
   const hasMoreFlights = visibleFlights < flights.length;
-  
+
   return (
-    <div className="space-y-4">
-      {displayedFlights.map((flight) => (
-        <FlightCard 
-          key={flight.id} 
-          flight={flight} 
-          onSelect={onSelectFlight} 
+    <div className="space-y-4 mt-4 mb-2">
+      {displayedFlights.map((flight, key) => (
+        <FlightCard
+          key={key}
+          flight={flight}
         />
       ))}
-      
+
       {hasMoreFlights && (
-        <div className="flex justify-center mt-4">
-          <button 
+        <div className="flex justify-center mt-4 mb-10">
+          <button
             onClick={handleLoadMore}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            className="px-4 py-2 font-semibold text-white rounded hover:bg-white-100 transition-colors"
           >
-            Load More Flights
+            Load more
           </button>
         </div>
       )}

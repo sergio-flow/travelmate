@@ -3,6 +3,7 @@ import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { mockFlightDeals } from "@/data/mockDeals";
 import moment from "moment";
+import FlightItineraries from "./FligthCard";
 
 interface Flight {
   id: string;
@@ -27,6 +28,8 @@ const carrierLogo = (airline: string) => {
 }
 
 const FlightSelection = ({ flights, onSelectFlight, origin, participants }: FlightSelectionProps) => {
+  const [isExpanded, setIsExpanded] = React.useState("");
+
   console.log("Flights:", flights);
 
   const flightsByCity = {}
@@ -85,10 +88,14 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
               <div
                 key={flight.id}
                 className="glass-card p-4 flex flex-col md:flex-row gap-8 cursor-pointer hover:bg-white/20 transition-colors"
-                onClick={() => onSelectFlight(flight.id)}
+
               >
                 <div className="flex-1">
-                  <div className="itinerary-card">
+                  <div className="itinerary-card"
+                    onClick={() => {
+                      setIsExpanded(isExpanded === city ? "" : city);
+                    }}
+                  >
                     <div className="itinerary-times">
                       <div>Mon-Fri</div>
                       {/* <div>&euro;{price}</div> */}
@@ -109,6 +116,10 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                       {/* <div>{dateTo}</div> */}
                     </div>
                   </div>
+
+                  {isExpanded && isExpanded === city && (
+                    <FlightItineraries flightData={flights} />
+                  )}
 
 
                   {/* <div className="flex justify-between mb-2">
