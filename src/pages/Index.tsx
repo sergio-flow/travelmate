@@ -11,6 +11,7 @@ import OriginSelector from "@/components/OriginSelector";
 import ToggleContent from "@/components/ToggleContent";
 import { createClient } from "@supabase/supabase-js";
 import CityVibes from "@/components/CityVibes";
+import moment from "moment";
 
 const supabase = createClient("https://xarsrdkfvyzajymlrtrs.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhcnNyZGtmdnl6YWp5bWxydHJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQxMTkxOTIsImV4cCI6MjA1OTY5NTE5Mn0._LdQZdhXGKvP6_ATQkoWzcRtz43tRzOQLo8DU4vWcGM");
 
@@ -18,7 +19,7 @@ const Index = () => {
   const [origin, setOrigin] = useState("Cluj");
   const [participants, setParticipants] = useState("Solo");
   const [currentStep, setCurrentStep] = useState("flights"); // flights, accommodations
- 
+
   const [flights, setFlights] = useState([]);
   const [selectedFlight, setSelectedFlight] = useState(null);
 
@@ -27,7 +28,11 @@ const Index = () => {
   }, []);
 
   async function getFlights() {
-    const { data } = await supabase.from("flights").select();
+    const { data } = await supabase.from("flights").select()
+      .gte("outbound_depart_local_time", moment().add(1, "week").startOf("isoWeek").toISOString())
+      .lte("outbound_depart_local_time", moment().add(1, "week").endOf("isoWeek").toISOString())
+      .eq('outbound_depart_city', "Cluj-Napoca")
+
     console.log("Fetched flights:", data);
     setFlights(data);
   }
