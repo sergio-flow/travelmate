@@ -90,9 +90,9 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                 <div className="flex-1">
                   <div className="itinerary-card">
                     <div className="itinerary-times">
-                      <div>{timeFrom}</div>
+                      <div>Mon-Fri</div>
                       {/* <div>&euro;{price}</div> */}
-                      <div>{timeTo}</div>
+                      <div>Sunday</div>
                     </div>
                     <div className="itinerary-locations">
                       <div>{flight.outbound_depart_airport}</div>
