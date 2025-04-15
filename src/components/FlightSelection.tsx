@@ -69,7 +69,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
         </p> */}
       </div>
 
-      <ScrollArea className="pt-5 pb-20 px-10">
+      <ScrollArea className="pt-5 pb-20 px-0 md:px-10">
         <div className="space-y-4">
           {Object.entries(sortedFlightsByCity).map(([city, flights]) => {
             const flight = flights[0];

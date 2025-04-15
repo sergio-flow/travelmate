@@ -54,7 +54,7 @@ const Index = () => {
       <CityVibes />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full p-4 z-10 flex justify-center items-center">
+      <header className="absolute top-0 left-0 w-full p-4 z-10 flex justify-center items-center">
         {/* <div className="absolute left-4">
           <OriginSelector currentOrigin={origin} onOriginChange={handleOriginChange} />
         </div> */}

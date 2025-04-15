@@ -234,3 +234,19 @@ body .video-background {
     opacity: 0.8;
   }
 }
+
+
+@media (max-width: 768px) {
+  .itinerary-card {
+    max-width: 100%;
+  }
+  .itinerary-locations {
+    font-size: 1rem;
+  }
+  .video-background {
+    display: none;
+  }
+  .city-vibes, .toggle-content, .audio-player {
+    display: none;
+  }
+}
