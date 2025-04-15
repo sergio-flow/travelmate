@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 
 const FlightCard = ({ flight, onSelect }) => {
@@ -123,15 +123,36 @@ const FlightCard = ({ flight, onSelect }) => {
 };
 
 const FlightItineraries = ({ flightData, onSelectFlight }) => {
+  const [visibleFlights, setVisibleFlights] = useState(3);
+  const flights = Object.values(flightData);
+  
+  const handleLoadMore = () => {
+    setVisibleFlights(prev => Math.min(prev + 3, flights.length));
+  };
+  
+  const displayedFlights = flights.slice(0, visibleFlights);
+  const hasMoreFlights = visibleFlights < flights.length;
+  
   return (
     <div className="space-y-4">
-      {Object.values(flightData).map((flight) => (
+      {displayedFlights.map((flight) => (
         <FlightCard 
           key={flight.id} 
           flight={flight} 
           onSelect={onSelectFlight} 
         />
       ))}
+      
+      {hasMoreFlights && (
+        <div className="flex justify-center mt-4">
+          <button 
+            onClick={handleLoadMore}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Load More Flights
+          </button>
+        </div>
+      )}
     </div>
   );
 };
