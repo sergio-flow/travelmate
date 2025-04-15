@@ -29,7 +29,7 @@ const FlightCard = ({ flight }) => {
   };
 
   return (
-    <div className="w-full max-w-xl rounded-lg glass-card p-2 md:p-4 pb-0 pt-0 shadow-md text-white">
+    <div className="w-full max-w-xl rounded-lg glass-card p-2 md:p-4 pb-0 pt-0 shadow-md bg-transparent text-white">
       <div className="md:flex">
         {/* Main flight info section - 75% width */}
         <div className="md:w-3/4 md:pr-4 pt-4">
