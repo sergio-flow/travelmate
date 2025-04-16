@@ -62,7 +62,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
     <div className="w-full max-w-lg mx-auto">
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-white text-center">
-          Cheapest city breaks from {origin}<br />for the next 6 months
+          Cheapest city breaks from {origin}<br />for the next 3 months
         </h2>
         {/* <p className="text-white/80">
           {participants} traveler
