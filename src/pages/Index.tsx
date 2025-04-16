@@ -29,8 +29,6 @@ const Index = () => {
 
   async function getFlights() {
     const { data } = await supabase.from("flights").select()
-      .gte("outbound_depart_local_time", moment().add(1, "week").startOf("isoWeek").toISOString())
-      .lte("outbound_depart_local_time", moment().add(1, "week").endOf("isoWeek").toISOString())
       .eq('outbound_depart_city', "Cluj-Napoca")
 
     console.log("Fetched flights:", data);

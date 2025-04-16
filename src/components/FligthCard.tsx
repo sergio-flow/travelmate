@@ -30,92 +30,64 @@ const FlightCard = ({ flight }) => {
 
   return (
     <div className="w-full max-w-xl rounded-lg glass-card p-2 md:p-4 pb-0 pt-0 shadow-md bg-transparent text-white">
-      <div className="md:flex">
-        {/* Main flight info section - 75% width */}
-        <div className="md:w-3/4 md:pr-4 pt-4">
-          {/* Outbound Section */}
-          <div className="">
-            {/* <div className="mb-2">
-              <span className="font-medium text-gray-600">Outbound</span>
-            </div> */}
-
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{outboundDepartTime}</span>
-                <span className="text-lg font-medium">{flight.outbound_depart_airport}</span>
-              </div>
-
-              <div className="mx-2 flex flex-grow flex-col items-center">
-                <div className="flex items-center">
-                  <span className="text-[10px] md:text-xs font-medium text-white/60">{outboundTravelTimeString}</span>
-                  <img
-                    src={carrierLogo(flight.outbound_carrier_code)}
-                    alt={flight.outbound_carrier_name}
-                    className="ml-2 h-4 rounded bg-white"
-                  />
-                </div>
-                <div className="mt-1 flex w-full items-center">
-                  <div className="h-0.5 flex-grow bg-gray-300"></div>
-                </div>
-                <span className="mt-1 text-[10px] md:text-xs font-medium text-white/60">Direct</span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{outboundArrivalTime}</span>
-                <span className="text-lg font-medium">{flight.outbound_arrival_airport}</span>
-              </div>
-            </div>
+      <div className="py-2">
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{outboundDepartTime}</span>
+            <span className="text-lg font-medium">{flight.outbound_depart_airport}</span>
           </div>
 
-          {/* Inbound Section */}
-          <div className="py-4">
-            {/* <div className="mb-2">
-              <span className="font-medium text-gray-600">Inbound</span>
-            </div> */}
-
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{inboundDepartTime}</span>
-                <span className="text-lg font-medium">{flight.inbound_depart_airport}</span>
-              </div>
-
-              <div className="mx-2 flex flex-grow flex-col items-center">
-                <div className="flex items-center">
-                  <span className="text-[10px] md:text-xs font-medium text-white/60">{inboundTravelTimeString}</span>
-                  <img
-                    src={carrierLogo(flight.inbound_carrier_code)}
-                    alt={flight.inbound_carrier_name}
-                    className="ml-2 h-4 rounded bg-white"
-                  />
-                </div>
-                <div className="mt-1 flex w-full items-center">
-                  <div className="h-0.5 flex-grow bg-gray-300"></div>
-                </div>
-                <span className="mt-1 text-[10px] md:text-xs font-medium text-white/60">Direct</span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <div className="flex items-center">
-                  <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{inboundArrivalTime}</span>
-                  {isInboundNextDay && <sup className="text-xs font-medium text-gray-500">+1</sup>}
-                </div>
-                <span className="text-lg font-medium">{flight.inbound_arrival_airport}</span>
-              </div>
+          <div className="mx-2 flex flex-grow flex-col items-center">
+            <div className="flex items-center">
+              <span className="text-[10px] md:text-xs font-medium text-white/60">{outboundTravelTimeString}</span>
+              <img
+                src={carrierLogo(flight.outbound_carrier_code)}
+                alt={flight.outbound_carrier_name}
+                className="ml-2 h-4 rounded bg-white"
+              />
             </div>
+            <div className="mt-1 flex w-full items-center">
+              <div className="h-0.5 flex-grow bg-gray-300"></div>
+            </div>
+            <span className="mt-1 text-[10px] md:text-xs font-medium text-white/60">Direct</span>
+          </div>
+
+          <div className="flex flex-col items-end">
+            <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{outboundArrivalTime}</span>
+            <span className="text-lg font-medium">{flight.outbound_arrival_airport}</span>
           </div>
         </div>
+      </div>
 
-        {/* Price and Select button section - 25% width */}
-        <div className="flex md:w-1/4 flex-col items-center justify-center md:border-l border-white/40 pl-4 pb-4 md:pb-0 align-center">
-          <div className="text-center">
-            <span className="text-2xl font-bold">€{price}</span>
+      <div className="py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{inboundDepartTime}</span>
+            <span className="text-lg font-medium">{flight.inbound_depart_airport}</span>
           </div>
-          {/* <button 
-            className="w-full rounded bg-green-600 py-3 font-medium text-white transition hover:bg-green-700"
-            onClick={() => onSelect(flight.id)}
-          >
-            Select
-          </button> */}
+
+          <div className="mx-2 flex flex-grow flex-col items-center">
+            <div className="flex items-center">
+              <span className="text-[10px] md:text-xs font-medium text-white/60">{inboundTravelTimeString}</span>
+              <img
+                src={carrierLogo(flight.inbound_carrier_code)}
+                alt={flight.inbound_carrier_name}
+                className="ml-2 h-4 rounded bg-white"
+              />
+            </div>
+            <div className="mt-1 flex w-full items-center">
+              <div className="h-0.5 flex-grow bg-gray-300"></div>
+            </div>
+            <span className="mt-1 text-[10px] md:text-xs font-medium text-white/60">Direct</span>
+          </div>
+
+          <div className="flex flex-col items-end">
+            <div className="flex items-center">
+              <span className="text-[10px] md:text-xs whitespace-nowrap uppercase font-bold">{inboundArrivalTime}</span>
+              {isInboundNextDay && <sup className="text-xs font-medium text-gray-500">+1</sup>}
+            </div>
+            <span className="text-lg font-medium">{flight.inbound_arrival_airport}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -123,7 +95,7 @@ const FlightCard = ({ flight }) => {
 };
 
 const FlightItineraries = ({ flightData }) => {
-  const [visibleFlights, setVisibleFlights] = useState(3);
+  const [visibleFlights, setVisibleFlights] = useState(1);
   const flights = Object.values(flightData);
 
   const handleLoadMore = () => {

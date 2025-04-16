@@ -62,7 +62,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
     <div className="w-full max-w-lg mx-auto">
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-white text-center">
-          Cheapest city breaks from {origin}<br />next week (21-27 Apr)
+          Cheapest city breaks from {origin}<br />for the next 6 months
         </h2>
         {/* <p className="text-white/80">
           {participants} traveler
@@ -82,13 +82,12 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
             // outbound_duration is ms, transform to h m
             const travelTime = moment.duration(flight.outbound_duration, "seconds");
             const travelTimeString = `${travelTime.hours()}h ${travelTime.minutes()}m`;
-            const dateFrom = moment(flight.inbound_departure).format("DD MMM");
-            const dateTo = moment(flight.inbound_arrival).format("DD MMM");
+            const dateFrom = moment(flight.outbound_depart_local_time).format("DD MMM");
+            const dateTo = moment(flight.inbound_arrival_local_time).format("DD MMM");
             return (
               <div
                 key={flight.id}
                 className="glass-card p-4 flex flex-col md:flex-row gap-8 cursor-pointer hover:bg-white/20 transition-colors"
-
               >
                 <div className="flex-1">
                   <div className="itinerary-card mb-0"
@@ -97,9 +96,9 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                     }}
                   >
                     <div className="itinerary-times">
-                      <div>Mon-Fri</div>
+                      <div>{dateFrom}</div>
                       {/* <div>&euro;{price}</div> */}
-                      <div>Sunday</div>
+                      <div>{dateTo}</div>
                     </div>
                     <div className="itinerary-locations">
                       <div>{flight.outbound_depart_airport}</div>
@@ -112,7 +111,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                       <div>{travelTimeString}</div>
                     </div>
                     <div className="flight-dates">
-                      <div className="text-center">Starting from &euro;{price}</div>
+                      <div className="text-center">&euro;{price}</div>
                     </div>
                   </div>
 
