@@ -29,7 +29,6 @@ const Index = () => {
 
   async function getFlights() {
     const { data } = await supabase.from("flights").select()
-      .eq('outbound_depart_city', "Cluj-Napoca")
 
     console.log("Fetched flights:", data);
     setFlights(data);
