@@ -163,7 +163,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
         {/* <p className="text-white/80">
           {participants} traveler
         </p> */}
-        <div className="p-2 mt-4 max-w-md mx-auto">
+        <div className="p-2 mt-8 max-w-md mx-auto">
           <div className="flex flex-wrap gap-4 items-center">
             <div className="relative w-full md:w-auto flex-1">
               <select
