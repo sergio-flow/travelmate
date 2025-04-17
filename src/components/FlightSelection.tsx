@@ -100,7 +100,7 @@ function transformFlights(flights) {
     temp[departCity] ??= {};
     temp[departCity][monthKey] ??= {};
     temp[departCity][monthKey][dayName] ??= {};
-    
+
     const existing = temp[departCity][monthKey][dayName][arrivalCity];
 
     if (!existing || flight.price_eur < existing.price_eur) {
@@ -127,7 +127,7 @@ function transformFlights(flights) {
 
         // Sort arrival cities by cheapest price
         const sortedArrivals = Object.entries(arrivalMap)
-          .sort(([, a]: [string, Flight], [, b]: [string, Flight]) => a.price_eur - b.price_eur);
+          .sort(([, a]: [string, Flight], [, b]: [string, Flight]) => new Date(a.outbound_depart_local_time).getTime() - new Date(b.outbound_depart_local_time).getTime());
 
         result[departCity][monthKey][dayName] = {};
         for (const [arrivalCity, flight] of sortedArrivals) {
