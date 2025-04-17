@@ -79,7 +79,8 @@ function transformFlights(flights) {
 
   const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-  const result = {};
+  // Step 1: Build temp structure
+  const temp = {};
 
   flights.forEach(flight => {
     const departCity = flight.outbound_depart_city;
@@ -89,30 +90,56 @@ function transformFlights(flights) {
     const flightYear = date.getFullYear();
     const dayName = weekdays[date.getDay()];
 
-    // Skip weekends
     if (!["MON", "TUE", "WED", "THU", "FRI"].includes(dayName)) return;
 
-    // Calculate month offset
     const offset = (flightYear - baseYear) * 12 + (flightMonth - baseMonth);
     if (offset < 0 || offset > 3) return;
 
     const monthKey = monthLabels[offset];
 
-    // Initialize structure
-    result[departCity] ??= {};
-    result[departCity][monthKey] ??= {};
-    result[departCity][monthKey][dayName] ??= {};
+    temp[departCity] ??= {};
+    temp[departCity][monthKey] ??= {};
+    temp[departCity][monthKey][dayName] ??= {};
+    
+    const existing = temp[departCity][monthKey][dayName][arrivalCity];
 
-    const existing = result[departCity][monthKey][dayName][arrivalCity];
-
-    // Save cheapest flight for this day and destination
     if (!existing || flight.price_eur < existing.price_eur) {
-      result[departCity][monthKey][dayName][arrivalCity] = flight;
+      temp[departCity][monthKey][dayName][arrivalCity] = flight;
     }
   });
 
+  // Step 2: Rebuild `result` with sorted arrival cities by price
+  const result = {};
+
+  for (const departCity in temp) {
+    result[departCity] = {};
+
+    for (const offset in monthLabels) {
+      const monthKey = monthLabels[offset];
+      if (!temp[departCity][monthKey]) continue;
+
+      result[departCity][monthKey] = {};
+
+      for (const dayName of ["MON", "TUE", "WED", "THU", "FRI"]) {
+        if (!temp[departCity][monthKey][dayName]) continue;
+
+        const arrivalMap = temp[departCity][monthKey][dayName];
+
+        // Sort arrival cities by cheapest price
+        const sortedArrivals = Object.entries(arrivalMap)
+          .sort(([, a]: [string, Flight], [, b]: [string, Flight]) => a.price_eur - b.price_eur);
+
+        result[departCity][monthKey][dayName] = {};
+        for (const [arrivalCity, flight] of sortedArrivals) {
+          result[departCity][monthKey][dayName][arrivalCity] = flight;
+        }
+      }
+    }
+  }
+
   return result;
 }
+
 
 
 
