@@ -158,7 +158,7 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
     <div className="w-full max-w-lg mx-auto">
       <div className="mb-8">
         <h2 className="text-4xl font-bold text-white text-center">
-          Destinatii sub &euro;100<br />din fiecare luna
+          Destinatii sub &euro;100<br />pentru tur si retur
         </h2>
         {/* <p className="text-white/80">
           {participants} traveler
