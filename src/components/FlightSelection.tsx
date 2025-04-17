@@ -156,8 +156,8 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      <div className="mb-8">
-        <h2 className="text-4xl font-bold text-white text-center">
+      <div className="mb-8 mt-20">
+        <h2 className="text-2xl md:text-5xl font-bold text-white text-center">
           Destinatii sub &euro;100<br />pentru tur si retur
         </h2>
         {/* <p className="text-white/80">
@@ -206,11 +206,11 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
       </div>
 
       <ScrollArea className="pb-20 px-0 md:px-10">
-        <div className="space-y-4">
+        <div className="py-4">
           {Object.entries(ordered[departureCity]).map(([period, days]) => {
             if (!days[departureDay]) return null;
             return (
-              <div key={period} className="flex flex-col my-4 mb-8">
+              <div key={`${departureCity}-${period}`} className="flex flex-col my-4 mb-20">
                 <h3 className="text-sm font-bold uppercase text-center text-white mb-4">{period}</h3>
                 {Object.entries(days[departureDay]).map(([city, flight]: [string, Flight]) => {
                   // const flight = day[departureDay];
