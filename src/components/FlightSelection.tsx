@@ -93,7 +93,7 @@ function transformFlights(flights) {
     if (!["MON", "TUE", "WED", "THU", "FRI"].includes(dayName)) return;
 
     const offset = (flightYear - baseYear) * 12 + (flightMonth - baseMonth);
-    if (offset < 0 || offset > 3) return;
+    if (offset < 0 || offset > 6) return;
 
     const monthKey = monthLabels[offset];
 
