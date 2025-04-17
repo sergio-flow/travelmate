@@ -250,8 +250,8 @@ const FlightSelection = ({ flights, onSelectFlight, origin, participants }: Flig
                   // outbound_duration is ms, transform to h m
                   const travelTime = moment.duration(flight.outbound_duration, "seconds");
                   const travelTimeString = `${travelTime.hours()}h ${travelTime.minutes()}m`;
-                  const dateFrom = moment(flight.outbound_depart_local_time).format("DD MMM");
-                  const dateTo = moment(flight.inbound_arrival_local_time).format("DD MMM");
+                  const dateFrom = moment(flight.outbound_depart_local_time).format("D MMM");
+                  const dateTo = moment(flight.inbound_arrival_local_time).format("D MMM");
                   return (
                     <div
                       key={`${city}-${period}`}
